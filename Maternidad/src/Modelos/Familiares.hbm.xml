@@ -1,0 +1,36 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 11-nov-2015 20:37:19 by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="Modelos.Familiares" table="familiares" catalog="maternidad" optimistic-lock="version">
+        <id name="idFamiliar" type="java.lang.Integer">
+            <column name="idFamiliar" />
+            <generator class="identity" />
+        </id>
+        <many-to-one name="madres" class="Modelos.Madres" fetch="select">
+            <column name="madre" not-null="true" />
+        </many-to-one>
+        <property name="nombres" type="string">
+            <column name="nombres" length="45" not-null="true" />
+        </property>
+        <property name="apellidos" type="string">
+            <column name="apellidos" length="45" not-null="true" />
+        </property>
+        <property name="telefono" type="string">
+            <column name="telefono" length="45" not-null="true" />
+        </property>
+        <property name="documento" type="string">
+            <column name="documento" length="45" not-null="true" />
+        </property>
+        <property name="residencia" type="string">
+            <column name="residencia" length="45" not-null="true" />
+        </property>
+        <property name="tipo" type="string">
+            <column name="tipo" length="45" not-null="true" />
+        </property>
+        <property name="direccion" type="string">
+            <column name="direccion" length="45" />
+        </property>
+    </class>
+</hibernate-mapping>

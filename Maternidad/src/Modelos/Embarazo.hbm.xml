@@ -1,0 +1,30 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 11-nov-2015 20:37:19 by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="Modelos.Embarazo" table="embarazo" catalog="maternidad" optimistic-lock="version">
+        <id name="idEmbarazo" type="java.lang.Integer">
+            <column name="idEmbarazo" />
+            <generator class="identity" />
+        </id>
+        <many-to-one name="madres" class="Modelos.Madres" fetch="select">
+            <column name="madre" not-null="true" />
+        </many-to-one>
+        <property name="fechaPosibleDeParto" type="date">
+            <column name="fechaPosibleDeParto" length="10" not-null="true" />
+        </property>
+        <property name="fechaPosibleDeEmbarazo" type="date">
+            <column name="fechaPosibleDeEmbarazo" length="10" not-null="true" />
+        </property>
+        <property name="obstreticos" type="string">
+            <column name="obstreticos" length="45" not-null="true" />
+        </property>
+        <set name="controleses" table="controles" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="embarazo" not-null="true" />
+            </key>
+            <one-to-many class="Modelos.Controles" />
+        </set>
+    </class>
+</hibernate-mapping>

@@ -1,0 +1,48 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 11-nov-2015 20:37:19 by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="Modelos.Madres" table="madres" catalog="maternidad" optimistic-lock="version">
+        <id name="idMadre" type="java.lang.Integer">
+            <column name="idMadre" />
+            <generator class="identity" />
+        </id>
+        <many-to-one name="residencias" class="Modelos.Residencias" fetch="select">
+            <column name="residencia" not-null="true" />
+        </many-to-one>
+        <many-to-one name="seguridades" class="Modelos.Seguridades" fetch="select">
+            <column name="seguridad" not-null="true" />
+        </many-to-one>
+        <property name="nombres" type="string">
+            <column name="nombres" length="45" not-null="true" />
+        </property>
+        <property name="apellidos" type="string">
+            <column name="apellidos" length="45" not-null="true" />
+        </property>
+        <property name="telefono" type="string">
+            <column name="telefono" length="45" not-null="true" />
+        </property>
+        <property name="documento" type="string">
+            <column name="documento" length="45" not-null="true" />
+        </property>
+        <property name="direccion" type="string">
+            <column name="direccion" length="45" />
+        </property>
+        <property name="fechaDeNacimento" type="date">
+            <column name="fechaDeNacimento" length="10" not-null="true" />
+        </property>
+        <set name="familiareses" table="familiares" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="madre" not-null="true" />
+            </key>
+            <one-to-many class="Modelos.Familiares" />
+        </set>
+        <set name="embarazos" table="embarazo" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="madre" not-null="true" />
+            </key>
+            <one-to-many class="Modelos.Embarazo" />
+        </set>
+    </class>
+</hibernate-mapping>
